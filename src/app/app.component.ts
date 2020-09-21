@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Injectable } from '@angular/core';
+import { TranslateService} from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HURREY';
+  constructor(public translate:TranslateService){
+    translate.setDefaultLang('en');
+  }
+
+
+  switchLanguage(language){
+    console.log(language.value);
+    this.translate.use(language);
+  }
 }

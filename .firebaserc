@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hurrey-a8e0a": {
+      "hosting": {
+        "HURREY": [
+          "hurrey-a8e0a"
+        ]
+      }
+    }
+  }
+}

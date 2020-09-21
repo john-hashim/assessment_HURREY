@@ -121,8 +121,16 @@
               "devServerTarget": "HURREY:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "HURREY"
+    }
+  },
+  "defaultProject": "HURREY",
+  "cli": {
+    "analytics": "0131eb85-7ed1-4542-b535-3d7d6ed02540"
+  }
 }

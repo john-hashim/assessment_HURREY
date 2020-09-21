@@ -1,0 +1,71 @@
+<div class="container">
+    <h1 translate>BATCH</h1>
+    <div class="card">
+        <div class="card-content" >
+            <span class="card-name" translate>AddItem</span>
+            <form class="col" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="text"  [(ngModel)]="batchItem.name" name="name">
+                        <label for="batchname" translate> Add Batch Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text"  [(ngModel)]="batchItem.day" name="day">
+                        <label for="day" translate> Day At Which Batch Start</label>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input type="text" [(ngModel)]="batchItem.institution" name="Institution">
+                      <label for="Institution" translate>Institution</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="time" placeholder="Starting Time" [(ngModel)]="batchItem.starttime" name="starttime">
+                        <label for="start" translate>Starting Time</label>
+                   </div>
+                </div> 
+                <button class="btn" translate>SUBMIT</button>
+            </form>     
+        </div>
+      
+    </div>
+
+
+    <div *ngIf="Batches?.length>0;else noItems"> 
+        <ul *ngFor="let batch of Batches" class="collection">
+            <li translate class="collection-item"><strong>{{batch.name | uppercase}} </strong>	&nbsp;Department&nbsp;Classes Starting On <strong>	&nbsp;{{batch.day | uppercase }}	&nbsp; </strong>At<strong>	&nbsp;{{batch.starttime}},&nbsp;</strong>&nbsp;condected by :<strong>&nbsp;{{batch.institution | uppercase }} &nbsp;</strong>
+                <a class="secondary-content">
+                    <i (click)="editItem($event,batch)" class="fa fa-pencil"></i>
+                    <i *ngIf="editState && BatchToEdit.id==batch.id" (click)="clearState()" class="fa fa-compress"></i>
+                </a>
+                <div *ngIf="editState && BatchToEdit.id==batch.id">
+                    <form class="col s6" >
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input type="text" placeholder="Add Institution Name" [(ngModel)]="batch.name" name="name">
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="text" placeholder="Add Day at which class starts" [(ngModel)]="batch.day" name="day">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                              <input type="text" placeholder="Add Institution name" [(ngModel)]="batch.institution" name="Institution">
+                            </div>
+                            <div class="input-field col s6">
+                                <input type="time" placeholder="Starting Time" [(ngModel)]="batch.starttime" name="starttime">
+                           </div>
+                        </div>
+                        <button (click)="onUpdate(batch)" class="btn orange" translate>Update Batch</button>
+                        <button (click)="deleteBatch($event,batch)" class="btn red" translate>Delete Item</button>
+                    </form>     
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template #noItems>
+        <h5>There are no items in the list</h5>
+    </ng-template>
+
+
+</div>
